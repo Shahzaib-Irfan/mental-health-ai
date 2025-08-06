@@ -18,6 +18,8 @@ import {
   BarChart3,
   Clock,
   CheckCircle,
+  Lock,
+  Users,
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -459,6 +461,103 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="py-15 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center space-y-4"
+        >
+          <h2 className="font-display text-4xl font-bold text-gray-900">
+            Your Private Mental Health Journal
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Experience the most intuitive and secure journaling platform
+            designed specifically for mental wellness.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 mt-16">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <div className="space-y-4">
+              <h3 className="font-display text-gray-900 text-2xl font-bold">
+                Write Freely, Remain Anonymous
+              </h3>
+              <p className="text-lg text-gray-600">
+                Our platform ensures complete anonymity while providing powerful
+                AI insights. No personal information is ever collected or
+                stored.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+                <div className="flex items-center space-x-3 mb-2">
+                  <Lock className="w-5 h-5 text-green-500" />
+                  <span className="font-semibold text-gray-900">
+                    End-to-End Encrypted
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600">
+                  Your entries are encrypted before leaving your device
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-4 shadow-sm space-y-4">
+                <div className="flex items-start space-x-4">
+                  <Brain className="w-6 h-6 text-blue-400" />
+                  <div className="text-gray-900 font-semibold">AI Insights</div>
+                </div>
+                <p className="text-sm text-gray-600">
+                  Instant analysis and personalized recommendations
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-4 shadow-sm space-y-4">
+                <div className="flex items-start space-x-4">
+                  <BarChart3 className="w-6 h-6 text-purple-400" />
+                  <div className="text-gray-900 font-semibold">
+                    Pattern Recognition
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600">
+                  Automatic detection of emotional patterns and triggers
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg p-4 shadow-sm space-y-4">
+                <div className="flex items-start space-x-4">
+                  <Users className="w-6 h-6 text-red-400" />
+                  <div className="text-gray-900 font-semibold">
+                    Therapist Connect
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600">
+                  Optional escalation to licensed professionals
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-500 to-purple-500 mt-6 rounded-xl p-4">
+              <h4 className="text-white font-semibold mb-3">
+                Ready to start your journey?
+              </h4>
+              <p className="text-blue-100 mb-4">
+                Join thousands who have found peace through anonymous
+                journaling.
+              </p>
+
+              <button className="bg-white text-blue-600 font-semibold px-6 py-2 rounded-full hover:bg-gray-100 transition-colors">
+                Start Writing Now
+              </button>
             </div>
           </motion.div>
         </div>
