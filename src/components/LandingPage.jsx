@@ -17,6 +17,7 @@ import {
   MessageCircle,
   BarChart3,
   Clock,
+  CheckCircle,
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -202,7 +203,7 @@ export default function LandingPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 rounded-3xl p-8 text-white shadow-2xl">
+              <div className="bg-gradient-to-br from-blue-500 via-purple-500 to-green-500 rounded-3xl p-8 text-white shadow-2xl">
                 <div className="space-y-6">
                   <div className="flex items-center space-x-3">
                     <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
@@ -356,8 +357,110 @@ export default function LandingPage() {
                   "Always-available AI companion for immediate support, coping strategies, and mindfulness exercises.",
                 gradient: "from-emerald-500 to-emerald-600",
               },
-            ]}
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-gray-100"
+              >
+                <div
+                  className={`w-12 h-12 bg-gradient-to-r ${feature.gradient} flex items-center justify-center mb-6 rounded-xl group-hover:scale-110 transition-transform duration-300`}
+                >
+                  <feature.icon className="w-6 h-6" />
+                </div>
+
+                <h3 className="font-display font-semibold text-xl text-gray-900 mb-2">
+                  {feature.title}
+                </h3>
+
+                <p className="text-gray-600 leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-4 mt-16 md:p-12"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+              <div>
+                <h3 className="font-display text-3xl font-bold text-gray-900 mb-4">
+                  Advanced Emotional Intelligence
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                  Our AI understands context, emotions, and subtle patterns in
+                  your writing to provide meaningful insights and detect when
+                  you might need additional support.
+                </p>
+
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span className="text-gray-700">
+                      Sentiment analysis with 94% accuracy
+                    </span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span className="text-gray-700">
+                      Automatic trigger identification
+                    </span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span className="text-gray-700">
+                      Personalized coping strategy suggestions
+                    </span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span className="text-gray-700">
+                      Crisis detection and immediate support
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="bg-white rounded-2xl p-6 shadow-lg">
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                        <Brain className="w-4 h-5 text-blue-600" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-gray-600 text-sm mb-2">
+                          Analyzing your journal entry...
+                        </p>
+
+                        <div className="bg-blue-50 rounded-lg p-3">
+                          <p className="text-sm text-blue-800">
+                            &ldquo;I see you&rsquo;ve been feeling overwhelmed
+                            lately. Would you like to explore some relaxation
+                            techniques?&rdquo;
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-gray-100">
+                      <div className="flex justify-between items-center text-xs text-gray-400 mt-3">
+                        <p>Mood: Stressed</p>
+                        <p>Confidence: 92%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
