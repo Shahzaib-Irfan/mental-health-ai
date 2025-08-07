@@ -20,6 +20,9 @@ import {
   CheckCircle,
   Lock,
   Users,
+  FileText,
+  Calendar,
+  Globe,
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -558,6 +561,276 @@ export default function LandingPage() {
               <button className="bg-white text-blue-600 font-semibold px-6 py-2 rounded-full hover:bg-gray-100 transition-colors">
                 Start Writing Now
               </button>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="">
+                <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                      <FileText className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-white font-semibold">
+                        Anonymous Journal
+                      </div>
+                      <p className="text-sm text-blue-100">
+                        Today&rsquo;s Entry
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-6 space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-start space-x-2">
+                      <Calendar className="w-4 h-4 text-gray-400" />
+                      <span className="text-sm text-gray-500">
+                        Today, 2:30 PM
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <p className="text-gray-700 text-sm leading-relaxed">
+                      &ldquo;Feeling overwhelmed with work today. The project
+                      deadline is approaching and I&rsquo;m struggling to manage
+                      my anxiety about it. I notice my sleep has been affected
+                      too...&rdquo;
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-6 space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-start space-x-2">
+                      <Brain className="w-4 h-4 text-blue-500" />
+                      <span className="text-sm font-bold text-gray-800">
+                        AI Insights
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <p className="text-blue-700 text-sm leading-relaxed">
+                      &ldquo;I detect work-related stress and sleep concerns.
+                      Here are some strategies:&rdquo;
+                    </p>
+                    <ul className="text-blue-700 text-xs space-y-1">
+                      <li>• Try the 4-7-8 breathing technique</li>
+                      <li>• Break the project into smaller tasks</li>
+                      <li>• Consider a 10-minute meditation</li>
+                    </ul>
+                  </div>
+
+                  <div className="flex items-center justify-center space-x-2 px-2">
+                    <button className="flex-1 bg-green-100 px-4 py-2 rounded-lg text-green-800 font-semibold text-sm hover:bg-green-300 transition-colors">
+                      Try Techniques
+                    </button>
+
+                    <button className="flex-1 bg-purple-100 px-4 py-2 rounded-lg text-purple-800 font-semibold text-sm hover:bg-purple-300 transition-colors">
+                      Talk to Therapist
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section id="testimonals" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 space-y-4"
+          >
+            <h2 className="font-display text-4xl font-bold text-gray-900">
+              Real Stories, Real Healing
+            </h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              See how anonymous journaling has transformed lives while
+              protecting privacy. Here are some of our users' experiences:
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Anonymous User #1247",
+                review:
+                  "The anonymity allowed me to be completely honest about my struggles. The AI insights helped me understand my patterns, and when I needed human support, the therapist connection was seamless. I've never felt more supported while staying completely private.",
+                condition: "Anxiety & Depression",
+                improvement: "78% mood improvement in 3 months",
+              },
+              {
+                name: "Anonymous User #892",
+                review:
+                  "Being able to journal without fear of judgment or exposure was life-changing. The AI detected my trauma triggers before I even realized them myself. The crisis intervention feature literally saved my life one night.",
+                condition: "PTSD & Trauma",
+                improvement: "Sleeping 6+ hours consistently",
+              },
+              {
+                name: "Anonymous User #2156",
+                review:
+                  "The pattern recognition showed me how work stress was affecting my entire life. The AI suggested techniques that actually worked, and when I needed professional help, I could connect instantly while staying anonymous.",
+                condition: "Work Burnout",
+                improvement: "Reduced anxiety by 65%",
+              },
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-gradient-to-br from-gray-50 to-white rounded-lg shadow-lg border border-gray-100 p-6"
+              >
+                <div className="flex items-center space-x-1 mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-5 h-5 text-yellow-400 fill-current"
+                    />
+                  ))}
+                </div>
+
+                <p className="text-gray-600 text-md italic">
+                  &ldquo;{testimonial.review}&rdquo;
+                </p>
+
+                <div className="flex items-center space-x-2 mt-4">
+                  <Shield className="w-4 h-4 text-blue-500" />
+                  <span className="font-semibold text-gray-900">
+                    {testimonial.name}
+                  </span>
+                </div>
+
+                <span className="text-sm text-gray-500">
+                  {testimonial.condition}
+                </span>
+
+                <div className="bg-green-50 rounded-lg p-3 mt-4">
+                  <div className="flex items-center space-x-2">
+                    <TrendingUp className="w-4 h-4 text-green-600" />
+                    <span className="text-sm font-medium text-green-800">
+                      {testimonial.improvement}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-4 mb-16"
+          >
+            <h2 className="font-display text-4xl font-bold">
+              Powered by Advanced Technology
+            </h2>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Our platform combines cutting-edge AI, NLP, and security
+              technologies to provide unparalleled mental health support while
+              maintaining complete anonymity.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: Brain,
+                title: "GPT-4 Integration",
+                description:
+                  "Advanced language model trained on therapeutic techniques and mental health research",
+                stats: "94% accuracy in emotional analysis",
+              },
+              {
+                icon: Shield,
+                title: "Zero-Knowledge Encryption",
+                description:
+                  "Military-grade encryption ensures we never see your personal data",
+                stats: "256-bit AES encryption",
+              },
+              {
+                icon: BarChart3,
+                title: "Advanced NLP",
+                description:
+                  "Real-time sentiment analysis and pattern recognition in your writing",
+                stats: "15+ emotional markers detected",
+              },
+              {
+                icon: Globe,
+                title: "Scalable Infrastructure",
+                description:
+                  "Cloud-native architecture supporting millions of anonymous users",
+                stats: "99.9% uptime guarantee",
+              },
+            ].map((tech, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <tech.icon className="w-8 h-8 text-blue-300" />
+                </div>
+                <h3 className="font-display text-xl text-white font-semibold mb-2">
+                  {tech.title}
+                </h3>
+                <p className="text-blue-100 leading-relaxed mb-2">
+                  {tech.description}
+                </p>
+                <span className="text-sm text-blue-200 font-medium">
+                  {tech.stats}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-white/10 py-8 px-12 text-center mt-12 rounded-2xl"
+          >
+            <h3 className="font-display text-2xl font-bold text-white mb-4">
+              Massive Scale, Personal Touch
+            </h3>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="text-blue-300 font-bold text-3xl">50K+</div>
+                <div className="text-blue-100 text-sm">Anonymous Users</div>
+              </div>
+              <div className="text-center">
+                <div className="text-green-300 font-bold text-3xl">1M+</div>
+                <div className="text-blue-100 text-sm">Journal Entries</div>
+              </div>
+              <div className="text-center">
+                <div className="text-purple-300 font-bold text-3xl">10K+</div>
+                <div className="text-blue-100 text-sm">Therapist Sessions</div>
+              </div>
+              <div className="text-center">
+                <div className="text-orange-300 font-bold text-3xl">24/7</div>
+                <div className="text-blue-100 text-sm">AI Availability</div>
+              </div>
             </div>
           </motion.div>
         </div>
