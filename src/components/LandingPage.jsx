@@ -898,6 +898,146 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
+
+      <footer className="bg-white border-t border-gray-200 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 items-center md:space-y-0">
+            <div className="text-left">
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex justify-center items-center">
+                  <Brain className="w-5 h-5 text-white" />
+                </div>
+                <span className="font-display font-bold text-xl text-gray-900">
+                  MindBuddy
+                </span>
+              </div>
+              <p className="text-gray-600 mt-2">
+                Empowering mental wellness through AI-powered support and
+                community.
+              </p>
+            </div>
+
+            <div className="text-left">
+              <h3 className="font-semibold text-gray-900 mb-4">Product</h3>
+              <ul className="text-gray-600 space-y-1">
+                <li>
+                  <Link
+                    href="#features"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    API
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Support
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="text-left">
+              <h3 className="font-semibold text-gray-900 mb-4">Resources</h3>
+              <ul className="text-gray-600 space-y-1">
+                <li>
+                  <Link
+                    href="#features"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Help Center
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Community
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Research
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="text-left">
+              <h3 className="font-semibold text-gray-900 mb-4">Company</h3>
+              <ul className="text-gray-600 space-y-1">
+                <li>
+                  <Link
+                    href="#features"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Priacy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Terms
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-200 mt-8 pt-6 text-center text-gray-600 text-md">
+            &copy; 2025 Mind Buddy. All rights reserved. Made with ❤️ by
+            MindBuddy Team for better mental health.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
