@@ -23,6 +23,7 @@ import {
   FileText,
   Calendar,
   Globe,
+  Heart,
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -830,6 +831,68 @@ export default function LandingPage() {
               <div className="text-center">
                 <div className="text-orange-300 font-bold text-3xl">24/7</div>
                 <div className="text-blue-100 text-sm">AI Availability</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-4"
+          >
+            <div className="space-y-4">
+              <h1 className="font-display text-5xl font-bold">
+                Your Mental Health Journey <br></br>
+                <span className="text-blue-300">
+                  Starts Here, Stays Private
+                </span>
+              </h1>
+              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+                Join thousands who have found healing through our anonymous
+                platform. No judgment, no exposure, just pure support for your
+                mental wellness.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/dashboard">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all flex items-center justify-center space-x-2 shadow-lg"
+                  >
+                    <span className="font-semibold">
+                      Start Anonymous Journey
+                    </span>
+                    <ArrowRight className="w-5 h-5" />
+                  </motion.button>
+                </Link>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  className="border-2 bg-transparent border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-gray-900 transition-colors"
+                >
+                  Connect With Therapist
+                </motion.button>
+              </div>
+            </div>
+            <div className="bg-white/10 rounded-2xl p-6 mt-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="flex items-center justify-center space-x-2">
+                  <Shield className="w-6 h-6 text-green-400" />
+                  <span className="text-lg">100% Anonymous</span>
+                </div>
+                <div className="flex items-center justify-center space-x-2">
+                  <Lock className="w-6 h-6 text-blue-400" />
+                  <span className="text-lg">End-to-End Encrypted</span>
+                </div>
+                <div className="flex items-center justify-center space-x-2">
+                  <Heart className="w-6 h-6 text-pink-400" />
+                  <span className="text-lg">Completely Free to Start</span>
+                </div>
               </div>
             </div>
           </motion.div>
