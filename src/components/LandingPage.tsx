@@ -69,7 +69,7 @@ export default function LandingPage() {
               </Link>
 
               <Link
-                href="#dashboard"
+                href="/dashboard"
                 className="rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-2"
               >
                 Get Started
