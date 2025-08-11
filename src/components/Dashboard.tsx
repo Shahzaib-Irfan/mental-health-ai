@@ -12,6 +12,14 @@ import {
     TrendingUp,
     Clock,
     Plus,
+    Lightbulb,
+    Target,
+    AlertTriangle,
+    CheckCircle,
+    Star,
+    Zap,
+    Eye,
+    Award,
 } from "lucide-react";
 import SideBar from '@/components/SideBar';
 
@@ -348,6 +356,262 @@ const Analytics = () => {
     </>
 }
 
+interface AIInsightsProps {
+    journalEntries: {
+        data: {
+            id: string;
+            title: string;
+            content: string;
+            createdAt: string;
+            tags: string[];
+        }[];
+    };
+    moodEntries: any[];
+}
+
+const AIInsights = ({ journalEntries, moodEntries }: AIInsightsProps) => {
+    // Mock AI insights data - in real app, this would come from API
+    const insights = {
+        moodTrends: {
+            trend: "improving",
+            percentage: 15,
+            period: "past 7 days"
+        },
+        keyThemes: [
+            { theme: "Stress Management", confidence: 92, color: "bg-rose-500" },
+            { theme: "Work-Life Balance", confidence: 87, color: "bg-amber-500" },
+            { theme: "Sleep Quality", confidence: 78, color: "bg-indigo-500" },
+            { theme: "Social Connections", confidence: 65, color: "bg-emerald-500" }
+        ],
+        recommendations: [
+            {
+                id: 1,
+                title: "Practice Deep Breathing",
+                description: "Based on your stress patterns, try 5-minute breathing exercises during peak stress hours.",
+                priority: "high",
+                category: "Stress Relief"
+            },
+            {
+                id: 2,
+                title: "Establish Evening Routine",
+                description: "Your journal entries suggest irregular sleep. Consider a consistent bedtime routine.",
+                priority: "medium",
+                category: "Sleep Hygiene"
+            },
+            {
+                id: 3,
+                title: "Schedule Social Time",
+                description: "Increased social activities correlate with improved mood in your entries.",
+                priority: "medium",
+                category: "Social Wellness"
+            }
+        ],
+        patterns: [
+            { pattern: "Mood dips often occur on Mondays", intensity: "moderate" },
+            { pattern: "Exercise days show 23% better mood ratings", intensity: "strong" },
+            { pattern: "Work stress peaks between 2-4 PM", intensity: "strong" }
+        ]
+    };
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-8"
+        >
+            {/* Header Section */}
+            <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 rounded-2xl p-8 text-white">
+                <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                        <Brain className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                        <h2 className="text-2xl font-bold">AI-Powered Insights</h2>
+                        <p className="text-indigo-100">Personalized analysis of your mental health journey</p>
+                    </div>
+                </div>
+                
+                {/* Quick Stats */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                        <div className="flex items-center space-x-2">
+                            <TrendingUp className="w-5 h-5 text-green-300" />
+                            <span className="text-sm text-indigo-100">Mood Trend</span>
+                        </div>
+                        <p className="text-xl font-semibold text-white mt-1">
+                            +{insights.moodTrends.percentage}% {insights.moodTrends.trend}
+                        </p>
+                        <p className="text-xs text-indigo-200">{insights.moodTrends.period}</p>
+                    </div>
+                    
+                    <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                        <div className="flex items-center space-x-2">
+                            <Eye className="w-5 h-5 text-blue-300" />
+                            <span className="text-sm text-indigo-100">Patterns Found</span>
+                        </div>
+                        <p className="text-xl font-semibold text-white mt-1">{insights.patterns.length}</p>
+                        <p className="text-xs text-indigo-200">behavioral insights</p>
+                    </div>
+                    
+                    <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                        <div className="flex items-center space-x-2">
+                            <Lightbulb className="w-5 h-5 text-yellow-300" />
+                            <span className="text-sm text-indigo-100">Recommendations</span>
+                        </div>
+                        <p className="text-xl font-semibold text-white mt-1">{insights.recommendations.length}</p>
+                        <p className="text-xs text-indigo-200">personalized tips</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Key Themes Analysis */}
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8">
+                <div className="flex items-center space-x-3 mb-6">
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <Target className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-bold text-gray-900">Identified Themes</h3>
+                        <p className="text-gray-600 text-sm">Key areas detected in your journal entries</p>
+                    </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {insights.keyThemes.map((theme, index) => (
+                        <div key={index} className="border border-gray-200 rounded-xl p-4 hover:shadow-md transition-shadow">
+                            <div className="flex items-center justify-between mb-3">
+                                <h4 className="font-semibold text-gray-900">{theme.theme}</h4>
+                                <span className="text-sm font-medium text-gray-600">{theme.confidence}%</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                                <div 
+                                    className={`h-2 rounded-full ${theme.color}`}
+                                    style={{ width: `${theme.confidence}%` }}
+                                ></div>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-2">Confidence Level</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* AI Recommendations */}
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8">
+                <div className="flex items-center space-x-3 mb-6">
+                    <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
+                        <Lightbulb className="w-5 h-5 text-emerald-600" />
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-bold text-gray-900">Personalized Recommendations</h3>
+                        <p className="text-gray-600 text-sm">AI-suggested actions based on your patterns</p>
+                    </div>
+                </div>
+                
+                <div className="space-y-4">
+                    {insights.recommendations.map((rec) => (
+                        <div key={rec.id} className="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-all hover:border-gray-300">
+                            <div className="flex items-start justify-between mb-3">
+                                <div className="flex items-center space-x-3">
+                                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                                        rec.priority === 'high' ? 'bg-red-100' : 'bg-blue-100'
+                                    }`}>
+                                        {rec.priority === 'high' ? 
+                                            <AlertTriangle className="w-4 h-4 text-red-600" /> :
+                                            <CheckCircle className="w-4 h-4 text-blue-600" />
+                                        }
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900">{rec.title}</h4>
+                                        <span className={`inline-block px-2 py-1 rounded-md text-xs font-medium ${
+                                            rec.priority === 'high' ? 'bg-red-50 text-red-700' : 'bg-blue-50 text-blue-700'
+                                        }`}>
+                                            {rec.category}
+                                        </span>
+                                    </div>
+                                </div>
+                                <span className={`px-2 py-1 rounded-md text-xs font-medium ${
+                                    rec.priority === 'high' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'
+                                }`}>
+                                    {rec.priority.toUpperCase()}
+                                </span>
+                            </div>
+                            <p className="text-gray-600 text-sm ml-11">{rec.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Behavioral Patterns */}
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8">
+                <div className="flex items-center space-x-3 mb-6">
+                    <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                        <Zap className="w-5 h-5 text-indigo-600" />
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-bold text-gray-900">Behavioral Patterns</h3>
+                        <p className="text-gray-600 text-sm">Insights discovered from your data</p>
+                    </div>
+                </div>
+                
+                <div className="space-y-3">
+                    {insights.patterns.map((pattern, index) => (
+                        <div key={index} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl">
+                            <div className={`w-3 h-3 rounded-full ${
+                                pattern.intensity === 'strong' ? 'bg-green-500' : 'bg-yellow-500'
+                            }`}></div>
+                            <div className="flex-1">
+                                <p className="text-gray-900 font-medium">{pattern.pattern}</p>
+                                <span className={`inline-block mt-1 px-2 py-1 rounded-md text-xs font-medium ${
+                                    pattern.intensity === 'strong' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                                }`}>
+                                    {pattern.intensity} correlation
+                                </span>
+                            </div>
+                            <Star className="w-4 h-4 text-gray-400" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Action Center */}
+            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-100 shadow-lg p-8">
+                <div className="flex items-center space-x-3 mb-6">
+                    <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <Award className="w-5 h-5 text-orange-600" />
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-bold text-gray-900">Take Action</h3>
+                        <p className="text-gray-600 text-sm">Start implementing your personalized insights</p>
+                    </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button className="flex items-center space-x-3 p-4 border-2 border-indigo-200 rounded-xl hover:border-indigo-300 hover:bg-indigo-50 transition-all">
+                        <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                            <Brain className="w-4 h-4 text-indigo-600" />
+                        </div>
+                        <div className="text-left">
+                            <p className="font-semibold text-gray-900">Get Detailed Analysis</p>
+                            <p className="text-sm text-gray-600">Deep dive into your patterns</p>
+                        </div>
+                    </button>
+                    
+                    <button className="flex items-center space-x-3 p-4 border-2 border-emerald-200 rounded-xl hover:border-emerald-300 hover:bg-emerald-50 transition-all">
+                        <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+                            <Target className="w-4 h-4 text-emerald-600" />
+                        </div>
+                        <div className="text-left">
+                            <p className="font-semibold text-gray-900">Set Goals</p>
+                            <p className="text-sm text-gray-600">Create action plans</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
 export default function Dashboard() {
     const [isSideBarOpen, setIsSideBarOpen] = useState(true);
     const [selectedTab, setSelectedTab] = useState('journal');
@@ -475,6 +739,7 @@ export default function Dashboard() {
                 <main className='w-full max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-16'>
                     {selectedTab === 'journal' && <Journal journalContent={journalContent} setJournalContent={setJournalContent} dummyJournalEntries={dummyJournalEntries} />}
                     {selectedTab === 'mood' && <MoodTracking newMoodEntry={newMoodEntry} setNewMoodEntry={setNewMoodEntry} dummyMoodEntries={dummyMoodEntries} />}
+                    {selectedTab === 'insights' && <AIInsights journalEntries={dummyJournalEntries} moodEntries={dummyMoodEntries.data} />}
                     {selectedTab === 'analytics' && <Analytics />}
                 </main>
             </div>
