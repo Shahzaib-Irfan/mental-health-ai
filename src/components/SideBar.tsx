@@ -6,10 +6,24 @@ import {
   Shield,
   ChevronLeft,
   ChevronRight,
+  LucideIcon,
 } from "lucide-react";
 
+interface SideBarItem {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+}
 
-export default function SideBar({sideBarItems, isSideBarOpen, setIsSideBarOpen, selectedTab, setSelectedTab}: { sideBarItems: { id: any; label: string; icon: any }[] , isSideBarOpen: boolean, setIsSideBarOpen?: (open: boolean) => void, selectedTab: string, setSelectedTab: (tab: string) => void }) {
+interface SideBarProps {
+  sideBarItems: SideBarItem[];
+  isSideBarOpen: boolean;
+  setIsSideBarOpen?: (open: boolean) => void;
+  selectedTab: string;
+  setSelectedTab: (tab: string) => void;
+}
+
+export default function SideBar({sideBarItems, isSideBarOpen, setIsSideBarOpen, selectedTab, setSelectedTab}: SideBarProps) {
 
 
     const SidebarHeader = () => (
@@ -26,7 +40,14 @@ export default function SideBar({sideBarItems, isSideBarOpen, setIsSideBarOpen, 
         </div>
     );
 
-    const SidebarNavigation = ({ onItemClick, sideBarItems, selectedTab, setSelectedTab }: { onItemClick?: () => void, sideBarItems: { id: string; label: string; icon: any }[], selectedTab: string, setSelectedTab: (id: string) => void }) => (
+    interface SidebarNavigationProps {
+        onItemClick?: () => void;
+        sideBarItems: SideBarItem[];
+        selectedTab: string;
+        setSelectedTab: (id: string) => void;
+    }
+
+    const SidebarNavigation = ({ onItemClick, sideBarItems, selectedTab, setSelectedTab }: SidebarNavigationProps) => (
     <div className="flex-1 overflow-y-auto py-4">
         <nav className="px-3">
             {sideBarItems.map((item, index) => (

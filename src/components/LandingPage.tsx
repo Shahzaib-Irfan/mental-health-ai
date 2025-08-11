@@ -660,7 +660,7 @@ export default function LandingPage() {
             </h2>
             <p className="text-lg text-gray-700 max-w-3xl mx-auto">
               See how anonymous journaling has transformed lives while
-              protecting privacy. Here are some of our users' experiences:
+              protecting privacy. Here are some of our users&apos; experiences:
             </p>
           </motion.div>
 
