@@ -1,7 +1,6 @@
 "use client"
 import { useState } from 'react';
 import { motion } from "framer-motion";
-import Link from "next/link";
 import {
     Brain,
     Shield,
@@ -366,10 +365,18 @@ interface AIInsightsProps {
             tags: string[];
         }[];
     };
-    moodEntries: any[];
+    moodEntries: {
+        id: string;
+        value: number;
+        notes: string;
+        energy: number;
+        anxiety: number;
+        stress: number;
+        createdAt: string;
+    }[];
 }
 
-const AIInsights = ({ journalEntries, moodEntries }: AIInsightsProps) => {
+const AIInsights = ({ journalEntries: _journalEntries, moodEntries: _moodEntries }: AIInsightsProps) => {
     // Mock AI insights data - in real app, this would come from API
     const insights = {
         moodTrends: {
@@ -696,14 +703,6 @@ export default function Dashboard() {
         createdAt: '2025-08-06T09:15:00Z'
       }
     ]
-  }
-
-  const dummyMoodStats = {
-    averageMood: 4.0,
-    totalEntries: 4,
-    entriesThisWeek: 4,
-    streakDays: 7,
-    moodTrend: 'improving'
   }
 
     return (
