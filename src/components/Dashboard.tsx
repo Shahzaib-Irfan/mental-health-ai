@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import {
     Brain,
@@ -21,6 +21,7 @@ import {
     Award,
 } from "lucide-react";
 import SideBar from '@/components/SideBar';
+import {User, Auth} from '@/app/dashboard/Interface/exports';
 
 interface JournalProps {
     journalContent: string;
@@ -622,6 +623,10 @@ const AIInsights = ({ journalEntries: _journalEntries, moodEntries: _moodEntries
 export default function Dashboard() {
     const [isSideBarOpen, setIsSideBarOpen] = useState(true);
     const [selectedTab, setSelectedTab] = useState('journal');
+    const [user, setUser] = useState<User | null>(null);
+    const [token, setToken] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [authError, setAuthError] = useState<string | null>(null);
     const [journalContent, setJournalContent] = useState('');
     const [newMoodEntry, setNewMoodEntry] = useState({
     value: 5,
@@ -630,6 +635,36 @@ export default function Dashboard() {
     anxiety: 3,
     stress: 3
   })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch('http://localhost:3000/auth/anonymous', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if(!response.ok){
+            throw new Error(`Authentication Failed: ${response.statusText}`)
+        }
+
+        const authData: Auth = await response.json();
+        setUser(authData.user);
+        setToken(authData.token);
+
+        localStorage.setItem('token', authData.token);
+      } catch (error) {
+        setAuthError(error instanceof Error ? error.message : 'An unexpected error occurred');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
     const sidebarItems = [
         { id: 'journal', label: 'Journal', icon: BookOpen },
@@ -705,6 +740,37 @@ export default function Dashboard() {
     ]
   }
 
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Connecting to MindBuddy...</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Show error state if authentication fails
+    if (authError) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
+                <div className="text-center bg-white rounded-lg shadow-lg p-8 max-w-md">
+                    <div className="text-red-600 mb-4">
+                        <AlertTriangle className="w-12 h-12 mx-auto" />
+                    </div>
+                    <h2 className="text-xl font-bold text-gray-900 mb-2">Connection Failed</h2>
+                    <p className="text-gray-600 mb-4">{authError}</p>
+                    <button 
+                        onClick={() => window.location.reload()} 
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+                    >
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex">
 
@@ -720,10 +786,10 @@ export default function Dashboard() {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between items-center h-16">
                             <div className="flex items-center space-x-4 ml-auto">
-                                <div className="bg-green-50 rounded-full px-3 py-1">
+                                <div className={`${authError ? 'bg-red-50' : 'bg-green-50'} rounded-full px-3 py-1`}>
                                     <div className="flex items-center space-x-2">
-                                        <Shield className="w-4 h-4 text-green-600" />
-                                        <span className="text-sm font-medium text-green-700">Connecting...</span>
+                                        <Shield className={`w-4 h-4 ${authError ? 'text-red-600' : 'text-green-600'}`} />
+                                        <span className={`text-sm font-medium ${authError ? 'text-red-700' : 'text-green-700'}`}>{user ? 'Connected' : 'Connecting...'}</span>
                                     </div>
                                 </div>
                                 <button className="bg-blue-600 hover:bg-blue-700 transition-colors text-white px-4 py-2 rounded-lg flex items-center space-x-2">
